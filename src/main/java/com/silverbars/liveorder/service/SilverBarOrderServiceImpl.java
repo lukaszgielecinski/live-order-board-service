@@ -10,7 +10,7 @@ import java.math.BigDecimal;
 import java.util.*;
 import java.util.stream.Collectors;
 
-public class SilverBarOrderServiceImpl implements SilverBarOrderService {
+class SilverBarOrderServiceImpl implements SilverBarOrderService {
 
     private SilverBarOrderRepository repository;
 
@@ -79,7 +79,7 @@ public class SilverBarOrderServiceImpl implements SilverBarOrderService {
 
     private List<LiveOrderSummaryRecord> processOrderGroup(List<SilverBarOrder> orderGroup) {
         return orderGroup.stream()
-                .reduce(new HashMap<>(), this::addToSameValueBucketIgnoringScale, this::sameMapOperator)
+                .reduce(new HashMap<>(), this::addToSameValueBucketIgnoringScale, this::sameMapCombiner)
                 .entrySet()
                 .stream()
                 .map(this::toOrderSummaryRecord)
@@ -96,7 +96,7 @@ public class SilverBarOrderServiceImpl implements SilverBarOrderService {
         return ordersByPrice;
     }
 
-    private HashMap<BigDecimal, List<SilverBarOrder>> sameMapOperator(HashMap<BigDecimal, List<SilverBarOrder>> m1, HashMap<BigDecimal, List<SilverBarOrder>> m2) {
+    private HashMap<BigDecimal, List<SilverBarOrder>> sameMapCombiner(HashMap<BigDecimal, List<SilverBarOrder>> m1, HashMap<BigDecimal, List<SilverBarOrder>> m2) {
         return m1;
     }
 

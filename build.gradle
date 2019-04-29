@@ -1,0 +1,27 @@
+plugins {
+    id 'java'
+    id 'io.freefair.lombok' version '3.2.0'
+}
+
+group 'com.silverbars.liveorder'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 11
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile group: 'org.apache.commons', name: 'commons-lang3', version: '3.9'
+    
+    testCompile group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: '5.4.2'
+    testCompile group: 'org.junit.jupiter', name: 'junit-jupiter-params', version: '5.4.2'
+    testCompile group: 'org.assertj', name: 'assertj-core', version: '3.12.2'
+    testCompile group: 'org.mockito', name: 'mockito-core', version: '2.27.0'
+    testCompile group: 'org.mockito', name: 'mockito-junit-jupiter', version: '2.27.0'
+}
+
+test {
+    useJUnitPlatform()
+}
